@@ -1,0 +1,768 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.apache.framework.dao.UserDao">
+  
+  <!-- <cache type="org.mybatis.caches.ehcache.EhcacheCache" flushInterval="6000000" size="1024"  readOnly="true"/>  -->
+  
+  <resultMap id="BaseResultMap" type="org.apache.framework.model.User">
+     <id column="id"  property="id" />
+     <result column="user_name" property="userName" />
+     <result column="password" property="password" />
+     <result column="country" property="country" />
+     <result column="expired_date" property="expiredDate" />
+     <result column="credentials_expired" property="credentialsExpired" />
+     <result column="full_name" property="fullName" />
+     <result column="gender" property="gender" />
+     <result column="age" property="age" />
+     <result column="address" property="address" />
+     <result column="phone" property="phone" />
+     <result column="mobile" property="mobile" />
+     <result column="email" property="email" />
+     <result column="user_type" property="userType" />
+     <result column="notify_mode" property="notifyMode" />
+     <result column="description" property="description" />
+     <result column="status" property="status" />
+     <result column="project_code" property="projectCode" />
+     <result column="lock_version" property="lockVersion" />
+     <result column="create_time" property="createTime" />
+     <result column="create_user_id" property="createUserId" />
+     <result column="update_time" property="updateTime" />
+     <result column="update_user_id" property="updateUserId" />
+     <result column="is_locked" property="isLocked" />
+     <result column="is_delete" property="isDelete" />
+     <result column="rsv1" property="rsv1" />
+     <result column="rsv2" property="rsv2" />
+     <result column="rsv3" property="rsv3" />
+  </resultMap>
+  
+  <sql id="Example_Where_Clause">
+      <trim prefix="" prefixOverrides="and" suffix="">
+	      <foreach collection="oredCriteria" item="criteria" separator="or">
+	        <if test="criteria.valid">
+	            <foreach collection="criteria.criteria" item="criterion">
+	              <choose>
+	                <when test="criterion.noValue">
+	                  and ${criterion.condition} 
+	                </when>
+	                <when test="criterion.singleValue">
+	                  and ${criterion.condition} #{criterion.value}
+	                </when>
+	                <when test="criterion.betweenValue">
+	                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+	                </when>
+	                <when test="criterion.listValue">
+	                  and ${criterion.condition}
+	                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+	                    #{listItem}
+	                  </foreach>
+	                </when>
+	              </choose>
+	            </foreach>
+	        </if>
+	      </foreach>
+	      <include refid="IsDelete_Where_Clause" />
+      </trim>
+  </sql>
+  
+  <sql id="Select_Example_Where_Clause">
+      <trim prefix="" prefixOverrides="and" suffix="">
+          <include refid="selectStartPageId" />
+	      <foreach collection="oredCriteria" item="criteria" separator="or">
+	        <if test="criteria.valid">
+	            <foreach collection="criteria.criteria" item="criterion">
+	              <choose>
+	                <when test="criterion.noValue">
+	                  and ${criterion.condition} 
+	                </when>
+	                <when test="criterion.singleValue">
+	                  and ${criterion.condition} #{criterion.value}
+	                </when>
+	                <when test="criterion.betweenValue">
+	                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+	                </when>
+	                <when test="criterion.listValue">
+	                  and ${criterion.condition}
+	                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+	                    #{listItem}
+	                  </foreach>
+	                </when>
+	              </choose>
+	            </foreach>
+	        </if>
+	      </foreach>
+	      <include refid="IsDelete_Where_Clause" />
+      </trim>
+  </sql>
+  
+  <sql id="Update_By_Example_Where_Clause">
+      <trim prefix="" prefixOverrides="and" suffix="">
+	      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+	        <if test="criteria.valid">
+	            <foreach collection="criteria.criteria" item="criterion">
+	              <choose>
+	                <when test="criterion.noValue">
+	                  and ${criterion.condition}
+	                </when>
+	                <when test="criterion.singleValue">
+	                  and ${criterion.condition} #{criterion.value}
+	                </when>
+	                <when test="criterion.betweenValue">
+	                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+	                </when>
+	                <when test="criterion.listValue">
+	                  and ${criterion.condition}
+	                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+	                    #{listItem}
+	                  </foreach>
+	                </when>
+	              </choose>
+	            </foreach>
+	        </if>
+	      </foreach>
+	      <include refid="IsDelete_Where_Clause" />
+      </trim>
+  </sql>
+  
+  <sql id="Base_Column_List">
+     id, user_name, password, country, expired_date, credentials_expired, full_name, gender, age, address, phone, mobile, email, user_type, notify_mode, description, status, project_code, lock_version, create_time, create_user_id, update_time, update_user_id, is_locked, is_delete, rsv1, rsv2, rsv3
+  </sql>
+  
+  <sql id="selectStartPageId">
+     <if test="offset != null">
+         and id 
+         <choose>
+			<when test="sortKey == 'desc'">&lt;=</when>
+			<otherwise>
+				&gt;=
+			</otherwise>
+		</choose>
+          
+         (select
+		    <if test="distinct">
+		      distinct
+		    </if>
+		    id
+		    from user
+		    <if test="_parameter != null">
+		      <where><include refid="Example_Where_Clause" /> </where>
+		    </if>
+		    <if test="groupByClause != null">
+		      group by ${groupByClause}
+		    </if>
+		    <if test="orderByClause != null">
+		      order by ${orderByClause}
+		    </if>  limit ${offset}, 1)
+     </if>
+  </sql>
+  
+  <sql id="IsDelete_Where_Clause">
+	        and is_delete = 'N'
+  </sql>
+  
+  <select id="selectByExample" parameterType="org.apache.framework.model.example.UserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <choose>
+		<when test="column != null">${column}</when>
+		<otherwise>
+			<include refid="Base_Column_List" />
+		</otherwise>
+	</choose>
+    from user
+    <if test="_parameter != null">
+       <where>
+	      <include refid="Select_Example_Where_Clause" /> 
+       </where>
+    </if>
+    <if test="groupByClause != null">
+      group by ${groupByClause}
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="pageSize != null">
+       limit ${pageSize}
+    </if>
+  </select>
+  
+  <select id="selectById" parameterType="Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id}
+    <include refid="IsDelete_Where_Clause" />
+  </select>
+  
+  <delete id="deleteById" parameterType="Long">
+    delete from user
+    where id = #{id} 
+    <include refid="IsDelete_Where_Clause" />
+  </delete>
+  
+  <delete id="deleteByExample" parameterType="org.apache.framework.model.example.UserExample">
+    delete from user
+    <if test="_parameter != null">
+      <where>
+         <include refid="Example_Where_Clause" /> 
+         <include refid="IsDelete_Where_Clause" />
+      </where>
+    </if>
+  </delete>
+   
+  <insert id="insert" parameterType="org.apache.framework.model.User" useGeneratedKeys="true" keyProperty="id">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+	  <if test="id != null">
+        id,
+      </if>
+	  <if test="userName != null">
+        user_name,
+      </if>
+	  <if test="password != null">
+        password,
+      </if>
+	  <if test="country != null">
+        country,
+      </if>
+	  <if test="expiredDate != null">
+        expired_date,
+      </if>
+	  <if test="credentialsExpired != null">
+        credentials_expired,
+      </if>
+	  <if test="fullName != null">
+        full_name,
+      </if>
+	  <if test="gender != null">
+        gender,
+      </if>
+	  <if test="age != null">
+        age,
+      </if>
+	  <if test="address != null">
+        address,
+      </if>
+	  <if test="phone != null">
+        phone,
+      </if>
+	  <if test="mobile != null">
+        mobile,
+      </if>
+	  <if test="email != null">
+        email,
+      </if>
+	  <if test="userType != null">
+        user_type,
+      </if>
+	  <if test="notifyMode != null">
+        notify_mode,
+      </if>
+	  <if test="description != null">
+        description,
+      </if>
+	  <if test="status != null">
+        status,
+      </if>
+	  <if test="projectCode != null">
+        project_code,
+      </if>
+	  <if test="lockVersion != null">
+        lock_version,
+      </if>
+	  <if test="createTime != null">
+        create_time,
+      </if>
+	  <if test="createUserId != null">
+        create_user_id,
+      </if>
+	  <if test="updateTime != null">
+        update_time,
+      </if>
+	  <if test="updateUserId != null">
+        update_user_id,
+      </if>
+	  <if test="isLocked != null">
+        is_locked,
+      </if>
+	  <if test="isDelete != null">
+        is_delete,
+      </if>
+	  <if test="rsv1 != null">
+        rsv1,
+      </if>
+	  <if test="rsv2 != null">
+        rsv2,
+      </if>
+	  <if test="rsv3 != null">
+        rsv3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id},
+      </if>
+      <if test="userName != null">
+        #{userName},
+      </if>
+      <if test="password != null">
+        #{password},
+      </if>
+      <if test="country != null">
+        #{country},
+      </if>
+      <if test="expiredDate != null">
+        #{expiredDate},
+      </if>
+      <if test="credentialsExpired != null">
+        #{credentialsExpired},
+      </if>
+      <if test="fullName != null">
+        #{fullName},
+      </if>
+      <if test="gender != null">
+        #{gender},
+      </if>
+      <if test="age != null">
+        #{age},
+      </if>
+      <if test="address != null">
+        #{address},
+      </if>
+      <if test="phone != null">
+        #{phone},
+      </if>
+      <if test="mobile != null">
+        #{mobile},
+      </if>
+      <if test="email != null">
+        #{email},
+      </if>
+      <if test="userType != null">
+        #{userType},
+      </if>
+      <if test="notifyMode != null">
+        #{notifyMode},
+      </if>
+      <if test="description != null">
+        #{description},
+      </if>
+      <if test="status != null">
+        #{status},
+      </if>
+      <if test="projectCode != null">
+        #{projectCode},
+      </if>
+      <if test="lockVersion != null">
+        #{lockVersion},
+      </if>
+      <if test="createTime != null">
+        #{createTime},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime},
+      </if>
+      <if test="updateUserId != null">
+        #{updateUserId},
+      </if>
+      <if test="isLocked != null">
+        #{isLocked},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete},
+      </if>
+      <if test="rsv1 != null">
+        #{rsv1},
+      </if>
+      <if test="rsv2 != null">
+        #{rsv2},
+      </if>
+      <if test="rsv3 != null">
+        #{rsv3},
+      </if>
+     </trim>
+  </insert>
+  
+  <select id="countByExample" parameterType="org.apache.framework.model.example.UserExample" resultType="java.lang.Integer">
+    <if test="groupByClause != null">
+     select count(*) from (
+    </if>
+       select
+       <choose>
+			<when test="distinct and column != null">count(distinct  ${column}) </when>
+			<otherwise>
+				count(*)
+			</otherwise>
+	   </choose>
+       from user
+    <if test="_parameter != null">
+      <where>
+         <include refid="Example_Where_Clause" /> 
+      </where>
+    </if>
+    <if test="groupByClause != null">
+      group by ${groupByClause}
+    ) as a
+    </if>
+  </select>
+  
+  <select id="selectByModel" resultMap="BaseResultMap" parameterType="org.apache.framework.model.User">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		<where>
+		      <if test="id != null"> 
+				 and id =  #{id}
+			  </if>
+		      <if test="userName != null"> 
+				 and user_name =  #{userName}
+			  </if>
+		      <if test="password != null"> 
+				 and password =  #{password}
+			  </if>
+		      <if test="country != null"> 
+				 and country =  #{country}
+			  </if>
+		      <if test="expiredDate != null"> 
+				 and expired_date =  #{expiredDate}
+			  </if>
+		      <if test="credentialsExpired != null"> 
+				 and credentials_expired =  #{credentialsExpired}
+			  </if>
+		      <if test="fullName != null"> 
+				 and full_name =  #{fullName}
+			  </if>
+		      <if test="gender != null"> 
+				 and gender =  #{gender}
+			  </if>
+		      <if test="age != null"> 
+				 and age =  #{age}
+			  </if>
+		      <if test="address != null"> 
+				 and address =  #{address}
+			  </if>
+		      <if test="phone != null"> 
+				 and phone =  #{phone}
+			  </if>
+		      <if test="mobile != null"> 
+				 and mobile =  #{mobile}
+			  </if>
+		      <if test="email != null"> 
+				 and email =  #{email}
+			  </if>
+		      <if test="userType != null"> 
+				 and user_type =  #{userType}
+			  </if>
+		      <if test="notifyMode != null"> 
+				 and notify_mode =  #{notifyMode}
+			  </if>
+		      <if test="description != null"> 
+				 and description =  #{description}
+			  </if>
+		      <if test="status != null"> 
+				 and status =  #{status}
+			  </if>
+		      <if test="projectCode != null"> 
+				 and project_code =  #{projectCode}
+			  </if>
+		      <if test="lockVersion != null"> 
+				 and lock_version =  #{lockVersion}
+			  </if>
+		      <if test="createTime != null"> 
+				 and create_time =  #{createTime}
+			  </if>
+		      <if test="createUserId != null"> 
+				 and create_user_id =  #{createUserId}
+			  </if>
+		      <if test="updateTime != null"> 
+				 and update_time =  #{updateTime}
+			  </if>
+		      <if test="updateUserId != null"> 
+				 and update_user_id =  #{updateUserId}
+			  </if>
+		      <if test="isLocked != null"> 
+				 and is_locked =  #{isLocked}
+			  </if>
+		      <if test="isDelete != null"> 
+				 and is_delete =  #{isDelete}
+			  </if>
+		      <if test="rsv1 != null"> 
+				 and rsv1 =  #{rsv1}
+			  </if>
+		      <if test="rsv2 != null"> 
+				 and rsv2 =  #{rsv2}
+			  </if>
+		      <if test="rsv3 != null"> 
+				 and rsv3 =  #{rsv3}
+			  </if>
+			<include refid="IsDelete_Where_Clause" />
+		</where>
+	</select>
+	
+   <select id="sumList" parameterType="org.apache.framework.model.example.UserExample" resultMap="BaseResultMap">
+	    select
+	    <if test="distinct">
+	      distinct
+	    </if>
+	    <choose>
+			<when test="column != null">${column}</when>
+			<otherwise>
+			    <trim prefix="values (" suffix=")" suffixOverrides=",">
+				        sum(id) as id,
+				        sum(country) as country,
+				        sum(age) as age,
+				        sum(lock_version) as lockVersion,
+				        sum(create_user_id) as createUserId,
+				        sum(update_user_id) as updateUserId,
+				</trim>
+			</otherwise>
+		</choose>
+	    from user
+	    <if test="_parameter != null">
+	       <where>
+		      <include refid="Example_Where_Clause" /> 
+		      <include refid="IsDelete_Where_Clause" />
+	       </where>
+	    </if>
+	    <if test="groupByClause != null">
+	      group by ${groupByClause}
+	    </if>
+	    <if test="orderByClause != null">
+	      order by ${orderByClause}
+	    </if>
+  </select>
+  
+  <update id="updateByExample" parameterType="map">
+    update user
+    <set>
+      <if test="record.userName != null">
+        user_name = #{record.userName},
+      </if>
+      <if test="record.password != null">
+        password = #{record.password},
+      </if>
+      <if test="record.country != null">
+        country = #{record.country},
+      </if>
+      <if test="record.expiredDate != null">
+        expired_date = #{record.expiredDate},
+      </if>
+      <if test="record.credentialsExpired != null">
+        credentials_expired = #{record.credentialsExpired},
+      </if>
+      <if test="record.fullName != null">
+        full_name = #{record.fullName},
+      </if>
+      <if test="record.gender != null">
+        gender = #{record.gender},
+      </if>
+      <if test="record.age != null">
+        age = #{record.age},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address},
+      </if>
+      <if test="record.phone != null">
+        phone = #{record.phone},
+      </if>
+      <if test="record.mobile != null">
+        mobile = #{record.mobile},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email},
+      </if>
+      <if test="record.userType != null">
+        user_type = #{record.userType},
+      </if>
+      <if test="record.notifyMode != null">
+        notify_mode = #{record.notifyMode},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status},
+      </if>
+      <if test="record.projectCode != null">
+        project_code = #{record.projectCode},
+      </if>
+      <if test="record.lockVersion != null">
+        lock_version = #{record.lockVersion},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime},
+      </if>
+      <if test="record.createUserId != null">
+        create_user_id = #{record.createUserId},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime},
+      </if>
+      <if test="record.updateUserId != null">
+        update_user_id = #{record.updateUserId},
+      </if>
+      <if test="record.isLocked != null">
+        is_locked = #{record.isLocked},
+      </if>
+      <if test="record.isDelete != null">
+        is_delete = #{record.isDelete},
+      </if>
+      <if test="record.rsv1 != null">
+        rsv1 = #{record.rsv1},
+      </if>
+      <if test="record.rsv2 != null">
+        rsv2 = #{record.rsv2},
+      </if>
+      <if test="record.rsv3 != null">
+        rsv3 = #{record.rsv3},
+      </if>
+    </set>
+    <if test="_parameter != null">
+       <where>
+	      <include refid="Update_By_Example_Where_Clause" />
+	      <include refid="IsDelete_Where_Clause" />
+	   </where>
+    </if>
+  </update>
+  
+  <update id="updateById" parameterType="org.apache.framework.model.User">
+    update user
+    <set>
+	  <if test="userName != null">
+        user_name = #{userName},
+      </if>
+	  <if test="password != null">
+        password = #{password},
+      </if>
+	  <if test="country != null">
+        country = #{country},
+      </if>
+	  <if test="expiredDate != null">
+        expired_date = #{expiredDate},
+      </if>
+	  <if test="credentialsExpired != null">
+        credentials_expired = #{credentialsExpired},
+      </if>
+	  <if test="fullName != null">
+        full_name = #{fullName},
+      </if>
+	  <if test="gender != null">
+        gender = #{gender},
+      </if>
+	  <if test="age != null">
+        age = #{age},
+      </if>
+	  <if test="address != null">
+        address = #{address},
+      </if>
+	  <if test="phone != null">
+        phone = #{phone},
+      </if>
+	  <if test="mobile != null">
+        mobile = #{mobile},
+      </if>
+	  <if test="email != null">
+        email = #{email},
+      </if>
+	  <if test="userType != null">
+        user_type = #{userType},
+      </if>
+	  <if test="notifyMode != null">
+        notify_mode = #{notifyMode},
+      </if>
+	  <if test="description != null">
+        description = #{description},
+      </if>
+	  <if test="status != null">
+        status = #{status},
+      </if>
+	  <if test="projectCode != null">
+        project_code = #{projectCode},
+      </if>
+	  <if test="lockVersion != null">
+        lock_version = #{lockVersion},
+      </if>
+	  <if test="createTime != null">
+        create_time = #{createTime},
+      </if>
+	  <if test="createUserId != null">
+        create_user_id = #{createUserId},
+      </if>
+	  <if test="updateTime != null">
+        update_time = #{updateTime},
+      </if>
+	  <if test="updateUserId != null">
+        update_user_id = #{updateUserId},
+      </if>
+	  <if test="isLocked != null">
+        is_locked = #{isLocked},
+      </if>
+	  <if test="isDelete != null">
+        is_delete = #{isDelete},
+      </if>
+	  <if test="rsv1 != null">
+        rsv1 = #{rsv1},
+      </if>
+	  <if test="rsv2 != null">
+        rsv2 = #{rsv2},
+      </if>
+	  <if test="rsv3 != null">
+        rsv3 = #{rsv3},
+      </if>
+    </set>
+    where id = #{id}
+    <include refid="IsDelete_Where_Clause" />
+  </update>
+   
+   <insert id="batchInsert" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+		insert into user (
+			id, user_name, password, country, expired_date, credentials_expired, full_name, gender, age, address, phone, mobile, email, user_type, notify_mode, description, status, project_code, lock_version, create_time, create_user_id, update_time, update_user_id, is_locked, is_delete, rsv1, rsv2, rsv3
+		) 
+		values
+	    <foreach collection="list" item="item" index="index" separator="," >
+	       <trim prefix="(" suffix=")" suffixOverrides=",">
+			    #{item.id},
+			    #{item.userName},
+			    #{item.password},
+			    #{item.country},
+			    #{item.expiredDate},
+			    #{item.credentialsExpired},
+			    #{item.fullName},
+			    #{item.gender},
+			    #{item.age},
+			    #{item.address},
+			    #{item.phone},
+			    #{item.mobile},
+			    #{item.email},
+			    #{item.userType},
+			    #{item.notifyMode},
+			    #{item.description},
+			    #{item.status},
+			    #{item.projectCode},
+			    #{item.lockVersion},
+			    #{item.createTime},
+			    #{item.createUserId},
+			    #{item.updateTime},
+			    #{item.updateUserId},
+			    #{item.isLocked},
+			    #{item.isDelete},
+			    #{item.rsv1},
+			    #{item.rsv2},
+			    #{item.rsv3},
+	       </trim>
+	    </foreach>
+	</insert>
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- 自定义查询扩展     -->
+</mapper>
