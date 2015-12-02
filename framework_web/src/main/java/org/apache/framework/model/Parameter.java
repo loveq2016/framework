@@ -7,7 +7,7 @@ public class Parameter extends BaseModel {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -2015112411094936816L;
+	private static final long serialVersionUID = -2015120121155652883L;
    /**
      * 主键
      */
@@ -21,12 +21,12 @@ public class Parameter extends BaseModel {
    /**
      * 参数key
      */
-    private String key;
+    private String parameterKey;
     
    /**
      * 参数value
      */
-    private String value;
+    private String parameterValue;
     
    /**
      * 描述
@@ -100,20 +100,20 @@ public class Parameter extends BaseModel {
         this.name = name == null ? null : name.trim();       
     }
     
-    public String getKey() {
-        return key;
+    public String getParameterKey() {
+        return parameterKey;
     }
 
-    public void setKey(String key) {
-        this.key = key == null ? null : key.trim();       
+    public void setParameterKey(String parameterKey) {
+        this.parameterKey = parameterKey == null ? null : parameterKey.trim();       
     }
     
-    public String getValue() {
-        return value;
+    public String getParameterValue() {
+        return parameterValue;
     }
 
-    public void setValue(String value) {
-        this.value = value == null ? null : value.trim();       
+    public void setParameterValue(String parameterValue) {
+        this.parameterValue = parameterValue == null ? null : parameterValue.trim();       
     }
     
     public String getDescription() {

@@ -109,15 +109,21 @@ public class UserServiceTest   {
 	public void testBatchInsert() {
 		try {
 			List<User> users = new ArrayList<>();
-			User user = User.initDefaultValue();
-			user.setUserName("223324323442fff2fffff");
-			user.setPassword("password");
-			users.add(user);
 			
-			user =  User.initDefaultValue();
-			user.setUserName("23423423223fffff");
-			user.setPassword("password");
-			users.add(user);
+			for (int i = 0; i < 51; i++) {
+				User user = User.initDefaultValue();
+				user.setUserName("admin"+i);
+				user.setPassword("password");
+				users.add(user);
+			}
+			
+			for (int i = 0; i < 51; i++) {
+				User user = User.initDefaultValue();
+				user.setUserName("willen"+i);
+				user.setPassword("password");
+				users.add(user);
+			}
+			
 			
 			for (User user2 : users) {
 				System.out.println(user2.getId());

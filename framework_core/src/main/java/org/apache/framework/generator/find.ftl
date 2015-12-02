@@ -17,13 +17,12 @@
 			<tr>
 			    <#list columns as column>
 			    <#if column.className == "Date">
-			    <th data-options="field:'${column.propertyName}',width:140">${column.remarks}</th>
+			    <th data-options="field:'${column.propertyName}',fit:true" formatter=dateFormatByEasyui>${column.remarks}</th>
 			    <#else>
-			    <th data-options="field:'${column.propertyName}',width:80">${column.remarks}</th>
+			    <th data-options="field:'${column.propertyName}',fit:true">${column.remarks}</th>
 			    </#if>
-				
 				</#list>
-				<th field="action" width="80" formatter="formatterAction">操作</th>
+				<th data-options="field:'action',fit:true" formatter="formatterAction">操作</th>
 			</tr>
 		</thead>
 	</table>

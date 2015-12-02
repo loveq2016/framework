@@ -59,4 +59,17 @@ public class RequestBinding {
 		}
 	}
     
+	public static void put(String key,String value) {
+		Map<String, String> map  = REQUEST_ID.get();
+		map.put(key, value);
+		REQUEST_ID.set(map);
+	}
+	
+	public static String get(String key) {
+		Map<String, String> map  = REQUEST_ID.get();
+		if(map != null && !map.isEmpty()) {
+			return map.get(key);
+		}
+		return null;
+	}
 }

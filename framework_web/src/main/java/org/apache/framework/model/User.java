@@ -402,6 +402,8 @@ public class User extends BaseModel {
 		user.setLockVersion(0);
 		user.setUserType("10");
 		user.setStatus("10");
+		user.setIsDelete("N");
+		user.setIsLocked("N");
 		return user;
 	}
 }

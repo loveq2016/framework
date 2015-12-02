@@ -15,6 +15,8 @@ public class BaseExample {
 	protected Integer pageSize;
 
 	protected String sortKey;
+	
+	protected String pagerKey;
 
 	public String getGroupByClause() {
 		return groupByClause;
@@ -71,4 +73,13 @@ public class BaseExample {
 	public void setPageSize(Integer pageSize) {
 		this.pageSize = pageSize;
 	}
+
+	public String getPagerKey() {
+		return pagerKey;
+	}
+
+	public void setPagerKey(String pagerKey) {
+		this.pagerKey = pagerKey;
+	}
+	
 }

@@ -190,8 +190,10 @@ public class BaseServiceImpl<M, E> implements BaseService<M, E> {
 					"orderByClause");
 			if (orderByClauseValue == null) {
 				orderByClauseValue = " id desc ";
-				PropertyUtils.setProperty(example, "orderByClause",
-						orderByClauseValue);
+				PropertyUtils.setProperty(example, "orderByClause", orderByClauseValue);
+				PropertyUtils.setProperty(example, "pagerKey", "id");
+			} else {
+				PropertyUtils.setProperty(example, "pagerKey", "other");
 			}
 			if (orderByClauseValue.toString().lastIndexOf("desc") > 0) {
 				PropertyUtils.setProperty(example, "sortKey", "desc");

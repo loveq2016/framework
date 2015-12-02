@@ -51,7 +51,7 @@ public class CodeController extends BaseController {
 	public Object find(Code code) {
 		Map<String, Object> map = getSuccessResult();
 		CodeExample example = new CodeExample();
-		example.setOrderByClause(" group_no desc , sequence asc ");
+		example.setOrderByClause(" id desc, group_no desc, sequence desc ");
 		CodeExample.Criteria criteria = example.createCriteria();
 		if (StringUtils.isNotEmpty(code.getGroupNo())) {
 			criteria.andGroupNoEqualTo(code.getGroupNo());

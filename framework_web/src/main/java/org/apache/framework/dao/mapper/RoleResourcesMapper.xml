@@ -144,20 +144,43 @@
 		</otherwise>
 	</choose>
     from role_resources
-    <if test="_parameter != null">
-       <where>
-	      <include refid="Select_Example_Where_Clause" /> 
-       </where>
-    </if>
-    <if test="groupByClause != null">
-      group by ${groupByClause}
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-    <if test="pageSize != null">
-       limit ${pageSize}
-    </if>
+    
+    <choose>
+		<when test="pagerKey == 'id'">
+             <if test="_parameter != null">
+		        <where>
+			      <include refid="Select_Example_Where_Clause" /> 
+		        </where>
+		     </if>
+		     <if test="groupByClause != null">
+		       group by ${groupByClause}
+		     </if>
+		     <if test="orderByClause != null">
+		       order by ${orderByClause}
+		     </if>
+		     <if test="pageSize != null">
+		        limit ${pageSize}
+		     </if>
+        </when>
+		<otherwise>
+			<if test="_parameter != null">
+		        <where>
+			      <include refid="Example_Where_Clause" /> 
+		        </where>
+		    </if>
+		    <if test="groupByClause != null">
+		      group by ${groupByClause}
+		    </if>
+		    <if test="orderByClause != null">
+		      order by ${orderByClause}
+		    </if>
+		    <if test="pageSize != null">
+		       limit ${offset},${pageSize}
+		    </if>
+		</otherwise>
+	</choose>
+		
+ 
   </select>
   
   <select id="selectById" parameterType="Long" resultMap="BaseResultMap">

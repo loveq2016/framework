@@ -15,6 +15,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.framework.model.*;
 import org.apache.framework.model.example.*;
 import org.apache.framework.service.*;
+import org.apache.framework.util.StringUtils;
 
 
 /**
@@ -37,6 +38,9 @@ public class ParameterController extends BaseController {
 		Map<String, Object> map = getSuccessResult();
 		ParameterExample example = new ParameterExample();
 		ParameterExample.Criteria criteria = example.createCriteria();
+		if (StringUtils.isNotEmpty(parameter.getName())) {
+			criteria.andNameLike("%"+StringUtils.trim(parameter.getName())+"%");
+		}
 		Pager pager = parameterService.selectByExample(example, getOffset(), getPageSize());
 		map.put(TOTAL, pager.getTotal());
 		map.put(ROWS, pager.getList());

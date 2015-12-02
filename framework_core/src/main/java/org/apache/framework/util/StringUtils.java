@@ -342,8 +342,8 @@ public final class StringUtils {
 		return str.replaceFirst(str.substring(0, 1), str.substring(0, 1).toLowerCase());
 	}
 
-
-	public static void main(String[] args) {
-		System.out.println(getOrderId());
-	}
+	public static boolean equals(CharSequence cs1, CharSequence cs2) {
+        return cs1 == null ? cs2 == null : cs1.equals(cs2);
+    }
+	
 }

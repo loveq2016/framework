@@ -15,10 +15,10 @@
 	     singleSelect="true" rownumbers="true" pagination="true" toolbar="#toolbar">
 		<thead>
 			<tr>
-				<th data-options="field:'name',width:120">名称</th>
-				<th data-options="field:'description',width:120">描述</th>
-				<th data-options="field:'createTime',width:140" formatter=dateFormatByEasyui>创建时间</th>
-				<th field="action" width="80" formatter="formatterAction">操作</th>
+				<th data-options="field:'name',fit:true">名称</th>
+				<th data-options="field:'description',fit:true">描述</th>
+				<th data-options="field:'createTime',fit:true" formatter=dateFormatByEasyui>创建时间</th>
+				<th data-options="field:'action',fit:true" formatter="formatterAction">操作</th>
 			</tr>
 		</thead>
 	</table>

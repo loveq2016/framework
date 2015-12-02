@@ -40,6 +40,21 @@
 				   <form:input path="itemValue" class="easyui-validatebox"  data-options="required:true,validType:['length[0,30]']"/>
 				</td>
 			</tr>
+			<tr>
+				<td align="right"><span class="requiredField">*</span>是否使用:</td>
+				<td>
+				   <input class="easyui-combobox" 
+			            name="isUse"
+			            data-options="
+			                    required:true,
+			                    editable:false,
+			                    method:'get',
+			                    valueField:'itemKey',
+			                    textField:'itemValue',
+			                    panelHeight:'auto'
+			            ">
+				</td>
+			</tr>
             <tr>
 				<td align="right">排序号:</td>
 				<td>
@@ -54,3 +69,20 @@
 	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm();">提交</a> 
 	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="resetForm();">重置</a>
 </div>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	initIsUse();
+});
+	
+function initIsUse() {
+	var isUse = "${code.isUse }";
+	if (isEmpty(isUse)) {
+		isUse = "Y";
+	}
+	var url = "code/findByGroupNo?groupNo=yes_no&selected="+isUse;
+	$("#form").find("input[name='isUse']").combobox({url:url}); 
+};
+
+</script>

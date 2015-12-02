@@ -7,8 +7,8 @@
   <resultMap id="BaseResultMap" type="org.apache.framework.model.Parameter">
      <id column="id"  property="id" />
      <result column="name" property="name" />
-     <result column="key" property="key" />
-     <result column="value" property="value" />
+     <result column="parameter_key" property="parameterKey" />
+     <result column="parameter_value" property="parameterValue" />
      <result column="description" property="description" />
      <result column="lock_version" property="lockVersion" />
      <result column="create_time" property="createTime" />
@@ -111,7 +111,7 @@
   </sql>
   
   <sql id="Base_Column_List">
-     id, name, key, value, description, lock_version, create_time, create_user_id, update_time, update_user_id, is_locked, is_delete, rsv1, rsv2, rsv3
+     id, name, parameter_key, parameter_value, description, lock_version, create_time, create_user_id, update_time, update_user_id, is_locked, is_delete, rsv1, rsv2, rsv3
   </sql>
   
   <sql id="selectStartPageId">
@@ -158,20 +158,43 @@
 		</otherwise>
 	</choose>
     from parameter
-    <if test="_parameter != null">
-       <where>
-	      <include refid="Select_Example_Where_Clause" /> 
-       </where>
-    </if>
-    <if test="groupByClause != null">
-      group by ${groupByClause}
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-    <if test="pageSize != null">
-       limit ${pageSize}
-    </if>
+    
+    <choose>
+		<when test="pagerKey == 'id'">
+             <if test="_parameter != null">
+		        <where>
+			      <include refid="Select_Example_Where_Clause" /> 
+		        </where>
+		     </if>
+		     <if test="groupByClause != null">
+		       group by ${groupByClause}
+		     </if>
+		     <if test="orderByClause != null">
+		       order by ${orderByClause}
+		     </if>
+		     <if test="pageSize != null">
+		        limit ${pageSize}
+		     </if>
+        </when>
+		<otherwise>
+			<if test="_parameter != null">
+		        <where>
+			      <include refid="Example_Where_Clause" /> 
+		        </where>
+		    </if>
+		    <if test="groupByClause != null">
+		      group by ${groupByClause}
+		    </if>
+		    <if test="orderByClause != null">
+		      order by ${orderByClause}
+		    </if>
+		    <if test="pageSize != null">
+		       limit ${offset},${pageSize}
+		    </if>
+		</otherwise>
+	</choose>
+		
+ 
   </select>
   
   <select id="selectById" parameterType="Long" resultMap="BaseResultMap">
@@ -207,11 +230,11 @@
 	  <if test="name != null">
         name,
       </if>
-	  <if test="key != null">
-        key,
+	  <if test="parameterKey != null">
+        parameter_key,
       </if>
-	  <if test="value != null">
-        value,
+	  <if test="parameterValue != null">
+        parameter_value,
       </if>
 	  <if test="description != null">
         description,
@@ -254,11 +277,11 @@
       <if test="name != null">
         #{name},
       </if>
-      <if test="key != null">
-        #{key},
+      <if test="parameterKey != null">
+        #{parameterKey},
       </if>
-      <if test="value != null">
-        #{value},
+      <if test="parameterValue != null">
+        #{parameterValue},
       </if>
       <if test="description != null">
         #{description},
@@ -330,11 +353,11 @@
 		      <if test="name != null"> 
 				 and name =  #{name}
 			  </if>
-		      <if test="key != null"> 
-				 and key =  #{key}
+		      <if test="parameterKey != null"> 
+				 and parameter_key =  #{parameterKey}
 			  </if>
-		      <if test="value != null"> 
-				 and value =  #{value}
+		      <if test="parameterValue != null"> 
+				 and parameter_value =  #{parameterValue}
 			  </if>
 		      <if test="description != null"> 
 				 and description =  #{description}
@@ -410,11 +433,11 @@
       <if test="record.name != null">
         name = #{record.name},
       </if>
-      <if test="record.key != null">
-        key = #{record.key},
+      <if test="record.parameterKey != null">
+        parameter_key = #{record.parameterKey},
       </if>
-      <if test="record.value != null">
-        value = #{record.value},
+      <if test="record.parameterValue != null">
+        parameter_value = #{record.parameterValue},
       </if>
       <if test="record.description != null">
         description = #{record.description},
@@ -464,11 +487,11 @@
 	  <if test="name != null">
         name = #{name},
       </if>
-	  <if test="key != null">
-        key = #{key},
+	  <if test="parameterKey != null">
+        parameter_key = #{parameterKey},
       </if>
-	  <if test="value != null">
-        value = #{value},
+	  <if test="parameterValue != null">
+        parameter_value = #{parameterValue},
       </if>
 	  <if test="description != null">
         description = #{description},
@@ -510,15 +533,15 @@
    
    <insert id="batchInsert" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
 		insert into parameter (
-			id, name, key, value, description, lock_version, create_time, create_user_id, update_time, update_user_id, is_locked, is_delete, rsv1, rsv2, rsv3
+			id, name, parameter_key, parameter_value, description, lock_version, create_time, create_user_id, update_time, update_user_id, is_locked, is_delete, rsv1, rsv2, rsv3
 		) 
 		values
 	    <foreach collection="list" item="item" index="index" separator="," >
 	       <trim prefix="(" suffix=")" suffixOverrides=",">
 			    #{item.id},
 			    #{item.name},
-			    #{item.key},
-			    #{item.value},
+			    #{item.parameterKey},
+			    #{item.parameterValue},
 			    #{item.description},
 			    #{item.lockVersion},
 			    #{item.createTime},

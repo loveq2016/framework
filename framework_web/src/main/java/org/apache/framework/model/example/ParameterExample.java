@@ -221,142 +221,142 @@ public class ParameterExample extends BaseExample {
             addCriterion("name not like", value, "name");
             return (Criteria) this;
         }
-        public Criteria andKeyIsNull() {
-            addCriterion("key is null");
+        public Criteria andParameterKeyIsNull() {
+            addCriterion("parameter_key is null");
             return (Criteria) this;
         }
 
-        public Criteria andKeyIsNotNull() {
-            addCriterion("key is not null");
+        public Criteria andParameterKeyIsNotNull() {
+            addCriterion("parameter_key is not null");
             return (Criteria) this;
         }
 
-        public Criteria andKeyEqualTo(String value) {
-            addCriterion("key =", value, "key");
+        public Criteria andParameterKeyEqualTo(String value) {
+            addCriterion("parameter_key =", value, "parameter_key");
             return (Criteria) this;
         }
 
-        public Criteria andKeyNotEqualTo(String value) {
-            addCriterion("key <>", value, "key");
+        public Criteria andParameterKeyNotEqualTo(String value) {
+            addCriterion("parameter_key <>", value, "parameter_key");
             return (Criteria) this;
         }
 
-        public Criteria andKeyGreaterThan(String value) {
-            addCriterion("key >", value, "key");
+        public Criteria andParameterKeyGreaterThan(String value) {
+            addCriterion("parameter_key >", value, "parameter_key");
             return (Criteria) this;
         }
 
-        public Criteria andKeyGreaterThanOrEqualTo(String value) {
-            addCriterion("key >=", value, "key");
+        public Criteria andParameterKeyGreaterThanOrEqualTo(String value) {
+            addCriterion("parameter_key >=", value, "parameter_key");
             return (Criteria) this;
         }
 
-        public Criteria andKeyLessThan(String value) {
-            addCriterion("key <", value, "key");
+        public Criteria andParameterKeyLessThan(String value) {
+            addCriterion("parameter_key <", value, "parameter_key");
             return (Criteria) this;
         }
 
-        public Criteria andKeyLessThanOrEqualTo(String value) {
-            addCriterion("key <=", value, "key");
+        public Criteria andParameterKeyLessThanOrEqualTo(String value) {
+            addCriterion("parameter_key <=", value, "parameter_key");
             return (Criteria) this;
         }
 
-        public Criteria andKeyIn(List<String> values) {
-            addCriterion("key in", values, "key");
+        public Criteria andParameterKeyIn(List<String> values) {
+            addCriterion("parameter_key in", values, "parameter_key");
             return (Criteria) this;
         }
 
-        public Criteria andKeyNotIn(List<String> values) {
-            addCriterion("key not in", values, "key");
+        public Criteria andParameterKeyNotIn(List<String> values) {
+            addCriterion("parameter_key not in", values, "parameter_key");
             return (Criteria) this;
         }
 
-        public Criteria andKeyBetween(String value1, String value2) {
-            addCriterion("key between", value1, value2, "key");
+        public Criteria andParameterKeyBetween(String value1, String value2) {
+            addCriterion("parameter_key between", value1, value2, "parameter_key");
             return (Criteria) this;
         }
 
-        public Criteria andKeyNotBetween(String value1, String value2) {
-            addCriterion("key not between", value1, value2, "key");
+        public Criteria andParameterKeyNotBetween(String value1, String value2) {
+            addCriterion("parameter_key not between", value1, value2, "parameter_key");
             return (Criteria) this;
         }
         
-        public Criteria andKeyLike(String value) {
-            addCriterion("key like", value, "key");
+        public Criteria andParameterKeyLike(String value) {
+            addCriterion("parameter_key like", value, "parameter_key");
             return (Criteria) this;
         }
 
-        public Criteria andKeyNotLike(String value) {
-            addCriterion("key not like", value, "key");
+        public Criteria andParameterKeyNotLike(String value) {
+            addCriterion("parameter_key not like", value, "parameter_key");
             return (Criteria) this;
         }
-        public Criteria andValueIsNull() {
-            addCriterion("value is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andValueIsNotNull() {
-            addCriterion("value is not null");
+        public Criteria andParameterValueIsNull() {
+            addCriterion("parameter_value is null");
             return (Criteria) this;
         }
 
-        public Criteria andValueEqualTo(String value) {
-            addCriterion("value =", value, "value");
+        public Criteria andParameterValueIsNotNull() {
+            addCriterion("parameter_value is not null");
             return (Criteria) this;
         }
 
-        public Criteria andValueNotEqualTo(String value) {
-            addCriterion("value <>", value, "value");
+        public Criteria andParameterValueEqualTo(String value) {
+            addCriterion("parameter_value =", value, "parameter_value");
             return (Criteria) this;
         }
 
-        public Criteria andValueGreaterThan(String value) {
-            addCriterion("value >", value, "value");
+        public Criteria andParameterValueNotEqualTo(String value) {
+            addCriterion("parameter_value <>", value, "parameter_value");
             return (Criteria) this;
         }
 
-        public Criteria andValueGreaterThanOrEqualTo(String value) {
-            addCriterion("value >=", value, "value");
+        public Criteria andParameterValueGreaterThan(String value) {
+            addCriterion("parameter_value >", value, "parameter_value");
             return (Criteria) this;
         }
 
-        public Criteria andValueLessThan(String value) {
-            addCriterion("value <", value, "value");
+        public Criteria andParameterValueGreaterThanOrEqualTo(String value) {
+            addCriterion("parameter_value >=", value, "parameter_value");
             return (Criteria) this;
         }
 
-        public Criteria andValueLessThanOrEqualTo(String value) {
-            addCriterion("value <=", value, "value");
+        public Criteria andParameterValueLessThan(String value) {
+            addCriterion("parameter_value <", value, "parameter_value");
             return (Criteria) this;
         }
 
-        public Criteria andValueIn(List<String> values) {
-            addCriterion("value in", values, "value");
+        public Criteria andParameterValueLessThanOrEqualTo(String value) {
+            addCriterion("parameter_value <=", value, "parameter_value");
             return (Criteria) this;
         }
 
-        public Criteria andValueNotIn(List<String> values) {
-            addCriterion("value not in", values, "value");
+        public Criteria andParameterValueIn(List<String> values) {
+            addCriterion("parameter_value in", values, "parameter_value");
             return (Criteria) this;
         }
 
-        public Criteria andValueBetween(String value1, String value2) {
-            addCriterion("value between", value1, value2, "value");
+        public Criteria andParameterValueNotIn(List<String> values) {
+            addCriterion("parameter_value not in", values, "parameter_value");
             return (Criteria) this;
         }
 
-        public Criteria andValueNotBetween(String value1, String value2) {
-            addCriterion("value not between", value1, value2, "value");
+        public Criteria andParameterValueBetween(String value1, String value2) {
+            addCriterion("parameter_value between", value1, value2, "parameter_value");
+            return (Criteria) this;
+        }
+
+        public Criteria andParameterValueNotBetween(String value1, String value2) {
+            addCriterion("parameter_value not between", value1, value2, "parameter_value");
             return (Criteria) this;
         }
         
-        public Criteria andValueLike(String value) {
-            addCriterion("value like", value, "value");
+        public Criteria andParameterValueLike(String value) {
+            addCriterion("parameter_value like", value, "parameter_value");
             return (Criteria) this;
         }
 
-        public Criteria andValueNotLike(String value) {
-            addCriterion("value not like", value, "value");
+        public Criteria andParameterValueNotLike(String value) {
+            addCriterion("parameter_value not like", value, "parameter_value");
             return (Criteria) this;
         }
         public Criteria andDescriptionIsNull() {

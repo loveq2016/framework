@@ -36,6 +36,8 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.ehcache.EhCacheCacheManager;
 
 public class UserRealm extends AuthorizingRealm {
 
@@ -158,6 +160,10 @@ public class UserRealm extends AuthorizingRealm {
 	
 	@Autowired
 	private ProjectService projectService;
+	
+	
+	@Autowired
+	private CacheManager cacheManager;
 	
 	private final static Log LOG = LogFactory.getLog(UserRealm.class);
 }

@@ -15,15 +15,15 @@
 	     singleSelect="true" rownumbers="true" pagination="true" toolbar="#toolbar">
 		<thead>
 			<tr>
-				<th data-options="field:'userName',width:80">用户名</th>
-				<th data-options="field:'fullName',width:80">用户全名</th>
-				<th data-options="field:'genderText',width:60">性别</th>
-				<th data-options="field:'age',width:60">年龄</th>
-				<th data-options="field:'mobile',width:90">移动电话</th>
-				<th data-options="field:'description',width:120">描述</th>
-				<th data-options="field:'statusText',width:60">用户状态 </th>
-				<th data-options="field:'createTime',width:140" formatter=dateFormatByEasyui>创建时间</th>
-				<th field="action" width="80" formatter="formatterAction">操作</th>
+				<th data-options="field:'userName',fit:true">用户名</th>
+				<th data-options="field:'fullName',fit:true">用户全名</th>
+				<th data-options="field:'genderText',fit:true">性别</th>
+				<th data-options="field:'age',fit:true">年龄</th>
+				<th data-options="field:'mobile',fit:true">移动电话</th>
+				<th data-options="field:'description',fit:true">描述</th>
+				<th data-options="field:'statusText',fit:true">用户状态 </th>
+				<th data-options="field:'createTime',fit:true" formatter=dateFormatByEasyui>创建时间</th>
+				<th data-options="field:'action',fit:true" formatter="formatterAction">操作</th>
 			</tr>
 		</thead>
 	</table>

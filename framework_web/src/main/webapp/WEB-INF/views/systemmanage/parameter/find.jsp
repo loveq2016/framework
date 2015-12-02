@@ -15,37 +15,12 @@
 	     singleSelect="true" rownumbers="true" pagination="true" toolbar="#toolbar">
 		<thead>
 			<tr>
-			    <th data-options="field:'id',width:80">主键</th>
-				
-			    <th data-options="field:'name',width:80">参数名称</th>
-				
-			    <th data-options="field:'key',width:80">参数key</th>
-				
-			    <th data-options="field:'value',width:80">参数value</th>
-				
-			    <th data-options="field:'description',width:80">描述</th>
-				
-			    <th data-options="field:'lockVersion',width:80">锁版本号</th>
-				
-			    <th data-options="field:'createTime',width:140">创建时间</th>
-				
-			    <th data-options="field:'createUserId',width:80">创建人</th>
-				
-			    <th data-options="field:'updateTime',width:140">更新时间</th>
-				
-			    <th data-options="field:'updateUserId',width:80">更新人id</th>
-				
-			    <th data-options="field:'isLocked',width:80">是否锁定， Y=是， N=否， 用于并发控制，比如审核</th>
-				
-			    <th data-options="field:'isDelete',width:80">是否删除， Y=是， N=否</th>
-				
-			    <th data-options="field:'rsv1',width:80">备用字段1</th>
-				
-			    <th data-options="field:'rsv2',width:80">备用字段1</th>
-				
-			    <th data-options="field:'rsv3',width:80">备用字段1</th>
-				
-				<th field="action" width="80" formatter="formatterAction">操作</th>
+			    <th data-options="field:'name',fit:true">参数名称</th>
+			    <th data-options="field:'parameterKey',fit:true">参数key</th>
+			    <th data-options="field:'parameterValue',fit:true">参数value</th>
+			    <th data-options="field:'description',fit:true">描述</th>
+			    <th data-options="field:'createTime',fit:true" formatter=dateFormatByEasyui>创建时间</th>
+				<th data-options="field:'action',fit:true" formatter="formatterAction">操作</th>
 			</tr>
 		</thead>
 	</table>
@@ -65,24 +40,10 @@
 		         <table>
 		             <tr>
 		                 <td>
-		                                                         用户名:
+		                                                         名称:
 		                 </td>
 		                 <td>
-		                     <input style="width: 120px" name="userName"  class="easyui-validatebox" data-options="required:false,validType:['length[0,20]']"/>  
-		                 </td>
-		                 <td>
-		                                                        年龄:
-		                 </td>
-		                 <td>
-		                     <input style="width: 120px" name="age" class="easyui-numberbox"  data-options="min:18,max:199,required:false" />  
-		                 </td>
-		                 <td>
-		                                                         移动电话:
-		                 </td>
-		                 <td>
-		                     <input style="width: 120px" name="mobile"  class="easyui-validatebox" data-options="required:false,validType:['length[11,11]']" />  
-		                 </td>
-		                 <td>
+		                     <input style="width: 120px" name="name"  class="easyui-validatebox" data-options="required:false,validType:['length[0,20]']"/>  
 		                 </td>
 		                 <td>
 		                     <a href="javascript:void(0);" onclick="searchData();" class="easyui-linkbutton" iconCls="icon-search">搜索</a>

@@ -102,9 +102,9 @@ public class ${modelName}Controller extends BaseController {
 	@RequiresPermissions("${modelNameVariable}_update")
 	@RequestMapping(value = "update")
 	@ResponseBody
-	public Object update(${modelName} user) {
+	public Object update(${modelName} ${modelNameVariable}) {
 		Map<String, Object> map = getSuccessResult();
-		${modelNameVariable}Service.updateById(user);
+		${modelNameVariable}Service.updateById(${modelNameVariable});
 		return map;
 	}
 	
