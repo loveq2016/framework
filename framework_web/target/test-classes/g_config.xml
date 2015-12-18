@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+
+	<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.1.110:3306/tsl_db" userId="root"
+		password="Kjt@)!$">
+	</jdbcConnection>
+    
+	<javaModel targetPackage="org.apache.framework.model" targetProject="E:\framework_web/src/main/java"/>
+
+	<sqlMap targetPackage="org.apache.framework.dao.mapper" targetProject="E:\framework_web/src/main/java"/>
+
+	<javaClient targetPackage="org.apache.framework.dao" targetProject="E:\framework_web/src/main/java"/>
+	
+    <service targetPackage="org.apache.framework.service" targetProject="E:\framework_web/src/main/java"/>
+    
+    <controller targetPackage="org.apache.framework.controller" targetProject="E:\framework_web/src/main/java"/>
+	
+	<view targetProject="E:\framework_web\src\main\webapp\WEB-INF\views" />
+	
+	<table tableName="gateway_refund_order" domainObjectName="GatewayRefundOrder" moduleName="refundmanage">
+	     
+	</table>
+	 
+	<!--<table tableName="cp_orderinfo" domainObjectName="CpOrderinfo" />
+	<table tableName="eq_orderinfo" domainObjectName="EqOrderinfo" />
+	<table tableName="cf_orderinfo" domainObjectName="CfOrderinfo" /> -->
+</config>

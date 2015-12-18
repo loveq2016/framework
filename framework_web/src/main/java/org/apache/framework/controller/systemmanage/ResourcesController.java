@@ -31,7 +31,6 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
  */
 @Controller
 @RequestMapping("resources/")
-@SessionAttributes(value="projectCode")
 public class ResourcesController extends BaseController {
 
 	
@@ -44,7 +43,7 @@ public class ResourcesController extends BaseController {
 	@RequiresPermissions("resources_find")
 	@RequestMapping(value = "find")
 	@ResponseBody
-	public Object find(Resources resources, @ModelAttribute("projectCode") String projectCode) {
+	public Object find(Resources resources,  String projectCode) {
 		Map<String, Object> map = getSuccessResult();
 		ResourcesExample example = new ResourcesExample();
 		example.setOrderByClause(" sequence asc ");
@@ -121,7 +120,7 @@ public class ResourcesController extends BaseController {
 	@RequiresPermissions("resources_add")
 	@RequestMapping(value = "add")
 	@ResponseBody
-	public Object add(Resources resources, @ModelAttribute("projectCode") String projectCode) {
+	public Object add(Resources resources, String projectCode) {
 		Map<String, Object> map = getSuccessResult();
 		try {
 			resources.setProjectCode(projectCode);
@@ -177,7 +176,7 @@ public class ResourcesController extends BaseController {
 	@RequiresPermissions("role_assign_resources")
 	@RequestMapping(value = "findAll")
 	@ResponseBody
-	public Object findAll(@ModelAttribute("projectCode") String projectCode) {
+	public Object findAll(String projectCode) {
 		Map<String, Object> map = getSuccessResult();
 		ResourcesExample example = new ResourcesExample();
 		example.setOrderByClause(" sequence asc ");

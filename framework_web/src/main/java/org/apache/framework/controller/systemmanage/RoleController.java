@@ -26,7 +26,6 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
  */
 @Controller
 @RequestMapping("role/")
-@SessionAttributes(value="projectCode")
 public class RoleController extends BaseController {
 
 	
@@ -38,7 +37,7 @@ public class RoleController extends BaseController {
 	@RequiresPermissions("role_find")
 	@RequestMapping(value = "find")
 	@ResponseBody
-	public Object find(Role role, @ModelAttribute("projectCode") String projectCode) {
+	public Object find(Role role,  String projectCode) {
 		Map<String, Object> map = getSuccessResult();
 		RoleExample example = new RoleExample();
 		RoleExample.Criteria criteria = example.createCriteria();
@@ -95,7 +94,7 @@ public class RoleController extends BaseController {
 	@RequiresPermissions("role_add")
 	@RequestMapping(value = "add")
 	@ResponseBody
-	public Object add(Role role, @ModelAttribute("projectCode") String projectCode) {
+	public Object add(Role role, String projectCode) {
 		Map<String, Object> map = getSuccessResult();
 		role.setProjectCode(projectCode);
 		role.setCreateUserId(SessionUtils.getUserId());

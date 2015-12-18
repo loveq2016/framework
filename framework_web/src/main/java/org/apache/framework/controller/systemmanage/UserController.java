@@ -34,7 +34,6 @@ import org.apache.shiro.subject.Subject;
  */
 @Controller
 @RequestMapping("user/")
-@SessionAttributes(value="projectCode")
 public class UserController extends BaseController {
 
 	
@@ -102,7 +101,7 @@ public class UserController extends BaseController {
 	@RequiresPermissions("user_add")
 	@RequestMapping(value = "add")
 	@ResponseBody
-	public Object add(User user, @ModelAttribute("projectCode") String projectCode) {
+	public Object add(User user, String projectCode) {
 		Map<String, Object> map = getSuccessResult();
 		user.setCreateUserId(SessionUtils.getUserId());
 		user.setPassword(Md5Utils.getMD5(user.getPassword()));
