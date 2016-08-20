@@ -1,5 +1,22 @@
 var namespace = "";
 
+function getNamespace() {
+	return namespace;
+}
+
+function setNamespace(currentNamespace) {
+	namespace = currentNamespace;
+}
+
+function confirm(msg) {
+    $.messager.confirm("提示框", msg, function (r) {
+        if (r) {
+            return true;
+        }
+    });
+    return false;
+}
+
 /**
  * 格式化 日期类型的 函数
  * @param data
@@ -117,7 +134,6 @@ function submitForm() {
 
 /**
  * 通过id删除数据，如果不例外，所有的通过id删除数据都必须调用这个方法
- * @param namespace
  * @param url
  */
 function delById(url, id) {
@@ -155,14 +171,13 @@ function refreshData() {
 
 /**
  * 搜索数据，所有搜索都必须调用这个方法
- * @param namespace
  */
-function searchData(namespace) {
-	var $grid = getGrid(namespace);
+function searchData() {
+	var $grid = getGrid();
 	if($grid.length > 0){
 		var queryParams = $grid.datagrid('options').queryParams;
 		queryParams = {}; 
-		var $search = getSearch(namespace);
+		var $search = getSearch();
 		
 		var isValid = false;
 		if ($search.find("#searchForm").attr("id") == "searchForm") {
@@ -190,8 +205,8 @@ function searchData(namespace) {
 }
  
 
-function getSelected(namespace) {
-	var $grid = getGrid(namespace);
+function getSelected() {
+	var $grid = getGrid();
 	if ($grid.is(".easyui-treegrid")) {
 		return $grid.treegrid('getSelected');
 	} else {
@@ -203,8 +218,8 @@ function getSelected(namespace) {
 	}
 }
 
-function getSelections(namespace) {
-	var $grid = getGrid(namespace);
+function getSelections() {
+	var $grid = getGrid();
 	var rows;
 	if ($grid.is(".easyui-treegrid")) {
 		rows =  $grid.treegrid('getSelections');
@@ -217,8 +232,8 @@ function getSelections(namespace) {
     return rows;
 }
 
-function isExistRowId(rowId,namespace) {
-	var $grid = getGrid(namespace);
+function isExistRowId(rowId) {
+	var $grid = getGrid();
 	var data = $grid.datagrid('getData');
 	var flag = false;
 	if (data && data.rows) {
@@ -232,8 +247,26 @@ function isExistRowId(rowId,namespace) {
 	return flag;
 }
 
-function selectRow(namespace, index) {
-	getGrid(namespace).datagrid('selectRow', index);
+function isExistRowId(rowId, namespace) {
+	var currentNamespace = getNamespace();
+	setNamespace(namespace);
+	var $grid = getGrid();
+	var data = $grid.datagrid('getData');
+	var flag = false;
+	if (data && data.rows) {
+		$.each(data.rows, function(i, row){
+	        if (rowId == row.id) {
+	        	showMsg("已经存在!");
+	        	flag = true;
+	        }
+	    });
+	}
+	setNamespace(currentNamespace);
+	return flag;
+}
+
+function selectRow(index) {
+	getGrid().datagrid('selectRow', index);
 }
 
 /**
@@ -309,25 +342,25 @@ function getForm() {
 	return $("#form");
 }
 
-function getGrid(namespace) {
-	if (isEmpty(namespace)) {
+function getGrid() {
+	if (isEmpty(getNamespace())) {
 		return $("#grid");
 	} else {
-		return $("#"+namespace+"Grid");
+		return $("#"+getNamespace()+"Grid");
 	}
 }
 
-function getSearch(namespace) {
-	if (isEmpty(namespace)) {
+function getSearch() {
+	if (isEmpty(getNamespace())) {
 		return $("#searchDiv");
 	} else {
-		return $("#"+namespace+"SearchDiv");
+		return $("#"+getNamespace()+"SearchDiv");
 	}
 }
 
 document.onkeydown = function(event){
     if (event.keyCode == 13) {
-    	searchData(namespace);
+    	searchData();
     }
 };
 

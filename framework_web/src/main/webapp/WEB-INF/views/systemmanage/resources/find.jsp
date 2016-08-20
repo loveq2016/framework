@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/common/taglibs.jsp" %> 
+<%
+request.setAttribute("namespace", "resources");
+%>
 <!DOCTYPE html PUBLIC>
 <html>
 <head>
@@ -11,8 +14,8 @@
          <input type="hidden" id="deleteAuth" value="Y"/>
     </shiro:hasPermission>
     
-	<table  class="easyui-treegrid" fit="true" id="grid" <shiro:hasPermission name="resources_find">url="resources/find"</shiro:hasPermission> title="资源数据" singleSelect="true" 
-	    data-options="<shiro:hasPermission name="resources_update">onDblClickCell: function(index,field,value){update('resources/toUpdate','修改资源',400,350);},</shiro:hasPermission>onBeforeLoad: function(row,param){if (!row) { param.id = -1;}}" 
+	<table  class="easyui-treegrid" fit="true" id="${namespace }Grid" <shiro:hasPermission name="resources_find">url="resources/find"</shiro:hasPermission> title="资源数据" singleSelect="true" 
+	    data-options="<shiro:hasPermission name="resources_update">onDblClickCell: function(index,field,value){update('resources/toUpdate','修改资源',400,350);},</shiro:hasPermission>onBeforeLoad: function(row,param){if (!row) { param.id = 0;}}" 
 	    rownumbers="true"  idField="id"   treeField="name"  pagination="true" toolbar="#toolbar">
 		<thead>
 			<tr>
@@ -39,12 +42,13 @@
 		    </shiro:hasPermission>
 			
 		</div>
-		<div id="searchDiv">
+		<div id="${namespace }SearchDiv">
 			
 		</div>
 	</div>
 	
 	<script type="text/javascript">
+	    setNamespace("${namespace }");
 		function formatterAction(value, row, index) {
 			var deleteAuth = $("#deleteAuth").val();
 			if ("Y" == deleteAuth) {

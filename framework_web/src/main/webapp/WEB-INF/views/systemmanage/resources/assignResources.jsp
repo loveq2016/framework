@@ -27,7 +27,7 @@
         	 
             var isSelect = false;//用来标记当前节点的状态，true:勾选，false:未勾选  
               
-            var selectNodes = getSelections("roleResources");//获取当前选中项  
+            var selectNodes = $("#roleResourcesGrid").treegrid('getSelections');//获取当前选中项  
             for(var i=0;i<selectNodes.length;i++) {  
                 if(selectNodes[i]["id"] == row.id) { 
                 	isSelect = true;  
@@ -141,7 +141,7 @@
     }
     
     function saveRoleResources(roleId) {
-    	var rows = getSelections("roleResources");
+    	var rows = $("#roleResourcesGrid").treegrid('getSelections');;
     	if (rows && rows.length > 0) {
     		var sendData = {roleIds:[],resourcesIds:[]};
     		for (var i = 0; i < rows.length; i++) {

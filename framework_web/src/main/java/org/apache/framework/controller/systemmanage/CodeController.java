@@ -27,7 +27,7 @@ public class CodeController extends BaseController {
 
     @RequestMapping(value = "findByGroupNo")
     @ResponseBody
-    public Object find(@RequestParam String groupNo,
+    public Object findByGroupNo(@RequestParam String groupNo,
     		@RequestParam(required=false,value="selected") String selected) {
     	List<Code> list = CodeUtils.getCodes(groupNo);
     	if (list != null && !list.isEmpty()) {

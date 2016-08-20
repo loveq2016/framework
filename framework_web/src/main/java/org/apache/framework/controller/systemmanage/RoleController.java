@@ -37,11 +37,11 @@ public class RoleController extends BaseController {
 	@RequiresPermissions("role_find")
 	@RequestMapping(value = "find")
 	@ResponseBody
-	public Object find(Role role,  String projectCode) {
+	public Object find(Role role) {
 		Map<String, Object> map = getSuccessResult();
 		RoleExample example = new RoleExample();
 		RoleExample.Criteria criteria = example.createCriteria();
-		criteria.andProjectCodeEqualTo(projectCode);
+		criteria.andProjectCodeEqualTo(SessionUtils.getProjectCode());
 		if (StringUtils.isNotEmpty(role.getName())) {
 			criteria.andNameLike("%"+role.getName().trim()+"%");
 		}
@@ -94,9 +94,9 @@ public class RoleController extends BaseController {
 	@RequiresPermissions("role_add")
 	@RequestMapping(value = "add")
 	@ResponseBody
-	public Object add(Role role, String projectCode) {
+	public Object add(Role role) {
 		Map<String, Object> map = getSuccessResult();
-		role.setProjectCode(projectCode);
+		role.setProjectCode(SessionUtils.getProjectCode());
 		role.setCreateUserId(SessionUtils.getUserId());
 		roleService.insert(role);
 		return map;

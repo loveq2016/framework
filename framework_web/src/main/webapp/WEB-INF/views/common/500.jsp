@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-	服务器异常!撒旦发射点发
+	服务器异常!
 	<br>
 </body>
 </html>

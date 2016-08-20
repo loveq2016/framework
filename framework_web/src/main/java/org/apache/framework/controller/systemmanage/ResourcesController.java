@@ -43,14 +43,14 @@ public class ResourcesController extends BaseController {
 	@RequiresPermissions("resources_find")
 	@RequestMapping(value = "find")
 	@ResponseBody
-	public Object find(Resources resources,  String projectCode) {
+	public Object find(Resources resources) {
 		Map<String, Object> map = getSuccessResult();
 		ResourcesExample example = new ResourcesExample();
 		example.setOrderByClause(" sequence asc ");
 		ResourcesExample.Criteria criteria = example.createCriteria();
-		criteria.andProjectCodeEqualTo(projectCode);
-		if (resources.getId() == null || resources.getId().equals(-1L)) {
-			criteria.andParentIdEqualTo(-1L);
+		criteria.andProjectCodeEqualTo(SessionUtils.getProjectCode());
+		if (resources.getId() == null || resources.getId().equals(0L)) {
+			criteria.andParentIdEqualTo(0L);
 			Pager pager = resourcesService.selectByExample(example, getOffset(), getPageSize());
 			map.put(TOTAL, pager.getTotal());
 			map.put(ROWS, setData((List<Resources>)pager.getList()));
@@ -120,10 +120,13 @@ public class ResourcesController extends BaseController {
 	@RequiresPermissions("resources_add")
 	@RequestMapping(value = "add")
 	@ResponseBody
-	public Object add(Resources resources, String projectCode) {
+	public Object add(Resources resources) {
 		Map<String, Object> map = getSuccessResult();
 		try {
-			resources.setProjectCode(projectCode);
+			if (resources.getParentId() == null) {
+				resources.setParentId(0L);
+			}
+			resources.setProjectCode(SessionUtils.getProjectCode());
 			resources.setCreateUserId(SessionUtils.getUserId());
 			resourcesService.insert(resources);
 		} catch (Exception e) {
@@ -176,12 +179,12 @@ public class ResourcesController extends BaseController {
 	@RequiresPermissions("role_assign_resources")
 	@RequestMapping(value = "findAll")
 	@ResponseBody
-	public Object findAll(String projectCode) {
+	public Object findAll() {
 		Map<String, Object> map = getSuccessResult();
 		ResourcesExample example = new ResourcesExample();
 		example.setOrderByClause(" sequence asc ");
 		ResourcesExample.Criteria criteria = example.createCriteria();
-		criteria.andProjectCodeEqualTo(projectCode);
+		criteria.andProjectCodeEqualTo(SessionUtils.getProjectCode());
 		try {
 			List<Resources> list = resourcesService.selectByExample(example);
 			map.put(ROWS, setChildren(list));
@@ -201,7 +204,7 @@ public class ResourcesController extends BaseController {
 		List<Resources> oneLevel = new ArrayList<Resources>();
 		if (list != null && !list.isEmpty()) {
 			for (Resources resources : list) {
-				if ("-1".equals(resources.getParentId() + "")) {
+				if ("0".equals(resources.getParentId() + "")) {
 					List<Resources> twoLevel = getChildren(resources.getId(), list);
 					for (Resources resources2 : twoLevel) {
 						List<Resources> threeLevel = getChildren(resources2.getId(), list);

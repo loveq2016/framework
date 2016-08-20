@@ -13,13 +13,13 @@ import org.apache.shiro.web.filter.authc.AuthenticationFilter;
  */
 public class ClientAuthenticationFilter extends AuthenticationFilter {
 
-    @Override
+    
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
         Subject subject = getSubject(request, response);
         return subject.isAuthenticated();
     }
 
-    @Override
+    
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
         String backUrl = getSuccessUrl();
         System.out.println(getLoginUrl());

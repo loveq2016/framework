@@ -25,7 +25,7 @@
 			            data-options="
 			                    required:true,
 			                    editable:false,
-			                    url:'code/findByGroupNo?groupNo=resources_types&selected=${resources.type }',
+			                    url:'code/findByGroupNo?groupNo=resources_type&selected=${resources.type }',
 			                    method:'get',
 			                    valueField:'itemKey',
 			                    textField:'itemValue',

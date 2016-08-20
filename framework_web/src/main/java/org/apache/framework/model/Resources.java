@@ -261,7 +261,7 @@ public class Resources extends BaseModel {
      * 资源类型(10是菜单 20是方法) 文本展示
      */
     public String getTypeText() {
-		return CodeUtils.getItemValue("resources_types", type);
+		return CodeUtils.getItemValue("resources_type", type);
 	}
 
     

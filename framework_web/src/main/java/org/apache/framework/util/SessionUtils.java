@@ -30,6 +30,11 @@ public class SessionUtils {
 		}
 	}
 	
+	public static String getProjectCode() {
+		return String.valueOf(get("projectCode"));
+		 
+	}
+	
 	public static void logout() {
 		Subject subject = SecurityUtils.getSubject();
 		subject.logout();

@@ -1,51 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 
-	<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/framework" userId="root"
-		password="123456">
+	<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.0.200:3306/hljrdevdb" userId="root"
+		password="root888">
 	</jdbcConnection>
     
-	<javaModel targetPackage="org.apache.framework.model" targetProject="E:\framework_web/src/main/java"/>
+	<javaModel targetPackage="com.huanlv.creditsupplier" targetProject="E:\framework_web/src/main/java"/>
 
-	<sqlMap targetPackage="org.apache.framework.dao.mapper" targetProject="E:\framework_web/src/main/java"/>
+	<sqlMap targetPackage="com.huanlv.creditsupplier.mapper" targetProject="E:\framework_web/src/main/java"/>
 
-	<javaClient targetPackage="org.apache.framework.dao" targetProject="E:\framework_web/src/main/java"/>
+	<javaClient targetPackage="com.huanlv.creditsupplier.mapper" targetProject="E:\framework_web/src/main/java"/>
 	
-    <service targetPackage="org.apache.framework.service" targetProject="E:\framework_web/src/main/java"/>
+    <service targetPackage="com.huanlv.creditsupplier" targetProject="E:\framework_web/src/main/java"/>
     
-    <controller targetPackage="org.apache.framework.controller" targetProject="E:\framework_web/src/main/java"/>
+    <controller targetPackage="com.huanlv.creditsupplier" targetProject="E:\framework_web/src/main/java"/>
 	
 	<view targetProject="E:\framework_web\src\main\webapp\WEB-INF\views" />
 	
-	<table tableName="user" domainObjectName="User" moduleName="systemmanage">
-	    <property name="status"  codeGroupNo="user_states"/>
-	    <property name="gender"  codeGroupNo="gender"/>
-	</table>
-	<table tableName="role" domainObjectName="Role" moduleName="systemmanage">
-	     
-	</table>
-	<table tableName="user_role" domainObjectName="UserRole" moduleName="systemmanage">
-	     
-	</table>
-	<table tableName="resources" domainObjectName="Resources" moduleName="systemmanage">
-	     <property name="type"  codeGroupNo="resources_types"/>
-	</table>
-	<table tableName="role_resources" domainObjectName="RoleResources" moduleName="systemmanage">
-	     
-	</table>
-	<table tableName="project" domainObjectName="Project" moduleName="systemmanage">
-	     
-	</table>
-	<table tableName="project_user" domainObjectName="ProjectUser" moduleName="systemmanage">
-	     
-	</table>
-	<table tableName="code" domainObjectName="Code" moduleName="systemmanage">
-	     <property name="isUse"  codeGroupNo="yes_no"/>
-	</table>
-	<table tableName="parameter" domainObjectName="Parameter" moduleName="systemmanage">
-	     
-	</table>
-	<!--<table tableName="cp_orderinfo" domainObjectName="CpOrderinfo" />
-	<table tableName="eq_orderinfo" domainObjectName="EqOrderinfo" />
-	<table tableName="cf_orderinfo" domainObjectName="CfOrderinfo" /> -->
+	<!-- <table tableName="credit_supplier" domainObjectName="CreditSupplier"  /> 
+	<table tableName="credit_supplier_attachment" domainObjectName="CreditSupplierAttachment"  /> --> 
+	
+	<table tableName="credit_allocation" domainObjectName="CreditAllocation"  />
 </config>

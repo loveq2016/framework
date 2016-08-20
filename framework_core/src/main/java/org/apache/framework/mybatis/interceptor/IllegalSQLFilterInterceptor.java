@@ -111,13 +111,13 @@ public class IllegalSQLFilterInterceptor implements Interceptor {
                     for (ParameterMapping parameterMapping : parameterMappings) {
                         String propertyName = parameterMapping.getProperty();
                         if (metaObject.hasGetter(propertyName)) {
-                            Object obj = metaObject.getValue(propertyName);
-                            if (obj == null || StringUtils.isEmpty(obj.toString())) {
+                             Object obj = metaObject.getValue(propertyName);
+                            if (obj == null) {
                             	return false;
                             }
                         } else if (boundSql.hasAdditionalParameter(propertyName)) {
                             Object obj = boundSql.getAdditionalParameter(propertyName);
-                            if (obj == null || StringUtils.isEmpty(obj.toString())) {
+                            if (obj == null) {
                             	return false;
                             }
                         }

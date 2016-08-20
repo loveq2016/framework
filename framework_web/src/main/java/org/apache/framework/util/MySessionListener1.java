@@ -17,4 +17,8 @@ public class MySessionListener1 implements SessionListener {
         System.out.println("会话停止：" + session.getId());  
     }
 	 
+    
+    public static void main(String[] args) {
+		System.out.println(Md5Utils.getMD5("fuwei"));
+	}
 }  

@@ -69,7 +69,7 @@ public class UserRealm extends AuthorizingRealm {
 		LOG.info("用户登录，用户名===="  + userName);
 		User selectUser = new User(); 
 		selectUser.setUserName(userName); 
-		User user = null;
+		User user = null; 
 		try {
 			user = userService.selectByModel(selectUser);
 		} catch (Exception e) {

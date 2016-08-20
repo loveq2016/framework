@@ -44,7 +44,7 @@ a{text-decoration:none}
 	<div region="west" split="true" title="导航菜单" style="width: 150px; padding: 1px;">
 		<div id="nav" class="easyui-accordion" fit="true" border="false">
 			<c:forEach items="${resources}" var="item">
-				<c:if test="${item.parentId eq '-1' }">
+				<c:if test="${item.parentId eq '0' }">
 					<div title="${item.name }" iconCls="group_add">
 						<ul>
 							<c:forEach items="${resources}" var="childItem">

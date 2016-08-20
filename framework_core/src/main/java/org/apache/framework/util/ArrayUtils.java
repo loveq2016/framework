@@ -1,5 +1,8 @@
 package org.apache.framework.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ArrayUtils {
 	
 	/**
@@ -35,6 +38,16 @@ public class ArrayUtils {
 		return null;
 	}
 	
-	
+	@SuppressWarnings("unchecked")
+	public static <T> List<T> add(T... values) {
+		if (values != null) {
+			List<T> list = new ArrayList<>();
+			for (T t : values) {
+				list.add(t);
+			}
+			return list;
+		}
+		return null;
+	}
 	
 }

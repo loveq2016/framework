@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/common/taglibs.jsp" %> 
+<%
+request.setAttribute("namespace", "user");
+%>
 <!DOCTYPE html PUBLIC>
 <html>
 <head>
@@ -10,7 +13,7 @@
     <shiro:hasPermission name="user_delete">
          <input type="hidden" id="deleteAuth" value="Y"/>
     </shiro:hasPermission>
-	<table class="easyui-datagrid" fit="true" style="height: 515px;"   <shiro:hasPermission name="user_find"> url="<c:url value="/user/find"> </c:url>" </shiro:hasPermission>  id="grid"  title="数据列表" 
+	<table class="easyui-datagrid" fit="true" style="height: 515px;"   <shiro:hasPermission name="user_find"> url="<c:url value="/user/find"> </c:url>" </shiro:hasPermission>  id="${namespace }Grid"  title="数据列表" 
 	     data-options="<shiro:hasPermission name="user_update">onDblClickCell: function(index,field,value){update('user/toUpdate','修改',400,320);}</shiro:hasPermission>" 
 	     singleSelect="true" rownumbers="true" pagination="true" toolbar="#toolbar">
 		<thead>
@@ -43,7 +46,7 @@
 		    </shiro:hasPermission>
 			
 		</div>
-		<div id="searchDiv"> 
+		<div id="${namespace }SearchDiv"> 
 		    <shiro:hasPermission name="user_find">
 		    <form id="searchForm">
 		         <table>
@@ -93,6 +96,7 @@
 		</div>
 	</div>
 	<script type="text/javascript">
+	    setNamespace("${namespace }");
 		function formatterAction(value, row, index) {
 			var deleteAuth = $("#deleteAuth").val();
 			if ("Y" == deleteAuth) {
@@ -136,7 +140,7 @@
 				    width: 600,
 				    height: 450,
 				    onClose:function(){
-				    	namespace = "";
+				    	namespace = "${namespace }";
 			    	},
 			    	onOpen:function(){
 			    		namespace = "role";

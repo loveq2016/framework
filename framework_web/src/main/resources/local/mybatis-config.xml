@@ -12,12 +12,12 @@
 	</settings>
 	
 	 <plugins>
-        <plugin interceptor="org.apache.framework.mybatis.interceptor.CountSqlRunTimeInterceptor" >
-        </plugin>
+        <!-- <plugin interceptor="org.apache.framework.mybatis.interceptor.CountSqlRunTimeInterceptor" >
+        </plugin> -->
         <plugin interceptor="org.apache.framework.mybatis.interceptor.StatementHandlerInterceptor" >
         </plugin>
-        <plugin interceptor="org.apache.framework.mybatis.interceptor.IllegalSQLFilterInterceptor" >
-        </plugin>
+        <!-- <plugin interceptor="org.apache.framework.mybatis.interceptor.IllegalSQLFilterInterceptor" >
+        </plugin> -->
 	</plugins>
 </configuration>
     
