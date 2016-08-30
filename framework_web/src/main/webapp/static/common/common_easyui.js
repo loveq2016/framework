@@ -8,10 +8,10 @@ function setNamespace(currentNamespace) {
 	namespace = currentNamespace;
 }
 
-function confirm(msg) {
+function confirm(msg, callName) {
     $.messager.confirm("提示框", msg, function (r) {
         if (r) {
-            return true;
+        	callName();
         }
     });
     return false;

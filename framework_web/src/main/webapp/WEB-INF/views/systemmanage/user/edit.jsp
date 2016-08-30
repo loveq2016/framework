@@ -77,9 +77,11 @@
 		   <tr>
 				<td align="right">描述:</td>
 				<td>
-				   <form:input path="description" class="easyui-validatebox"  data-options="required:false,validType:['length[0,200]']"/>
+				   <form:textarea path="description" class="easyui-validatebox"  data-options="required:true,validType:['length[0,200]']" />
 				</td>
 			</tr>
+			
+			 
 		</table>
 	</form:form>
 </div>
