@@ -1,2 +1,3 @@
 eclipse.preferences.version=1
-encoding//src/main/resources/local/config.properties=UTF-8
+encoding//src/main/resources/dev/config.properties=UTF-8
+encoding//src/main/resources/test/config.properties=UTF-8

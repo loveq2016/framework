@@ -2028,7 +2028,7 @@ public final class DateUtils {
 
 		System.out.println(addMinute("2008-9-29 12:12:12", 1));*/
  	
- 	System.out.println(getTwoMinute("2015-7-1 3:00:00","2015-7-1 00:00:00"));
+ 	System.out.println(getTwoDay("2016-9-10","2016-8-30"));
 
 	}
 

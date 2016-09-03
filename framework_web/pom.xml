@@ -14,7 +14,7 @@
 	<packaging>war</packaging>
 	<name>framework_web Maven Webapp</name>
 	<url>http://maven.apache.org</url>
-	
+
 	<dependencies>
 
 		<dependency>
@@ -22,54 +22,36 @@
 			<artifactId>framework_core</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
- 
+
 	</dependencies>
 
 	<profiles>
 		<profile>
-			<id>local</id>
+			<!-- 本地开发环境 -->
+			<id>dev</id>
 			<properties>
-				<package.environment>local</package.environment>
+				<profiles.active>dev</profiles.active>
+				<deploy.url>http://host:port/manager/text</deploy.url>
 			</properties>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
-			<build>
-				<resources>
-					<resource>
-						<directory>src/main/resources/local</directory>
-					</resource>
-				</resources>
-			</build>
 		</profile>
 		<profile>
+			<!-- 测试环境 -->
 			<id>test</id>
 			<properties>
-				<package.environment>test</package.environment>
+				<profiles.active>test</profiles.active>
+				<deploy.url>http://host:port/manager/text</deploy.url>
 			</properties>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<build>
-				<resources>
-					<resource>
-						<directory>src/main/resources/test</directory>
-					</resource>
-				</resources>
-			</build>
 		</profile>
 		<profile>
-			<id>product</id>
+			<!-- 生产环境 -->
+			<id>pro</id>
 			<properties>
-				<package.environment>product</package.environment>
+				<profiles.active>pro</profiles.active>
+				<deploy.url>http://host:port/manager/text</deploy.url>
 			</properties>
-			<build>
-				<resources>
-					<resource>
-						<directory>src/main/resources/product</directory>
-					</resource>
-				</resources>
-			</build>
 		</profile>
 	</profiles>
 
@@ -90,12 +72,25 @@
 
 		<resources>
 			<resource>
+				<directory>src/main/resources</directory>
+				<!-- 资源根目录排除各环境的配置，使用单独的资源目录来指定 -->
+				<excludes>
+					<exclude>test/*</exclude>
+					<exclude>pro/*</exclude>
+					<exclude>dev/*</exclude>
+				</excludes>
+			</resource>
+			<resource>
+				<directory>src/main/resources/${profiles.active}</directory>
+			</resource>
+			<resource>
 				<directory>src/main/java</directory>
 				<includes>
 					<include>**/*.xml</include>
 				</includes>
 			</resource>
 		</resources>
+
 		<testResources>
 			<testResource>
 				<directory>src/test/java</directory>
