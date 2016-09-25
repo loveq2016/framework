@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="/WEB-INF/views/common/taglibs.jsp" %> 
+<%@include file="/WEB-INF/views/common/taglibs.jsp" %> <#assign  modelNameVariable="${StringUtils.firstLetterToLowerCase('${domainObjectName}')!}"/>
 <%
 request.setAttribute("namespace", "${modelNameVariable}");
 %>
 <!DOCTYPE html PUBLIC>
-<html><#assign  modelNameVariable="${StringUtils.firstLetterToLowerCase('${domainObjectName}')!}"/>
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@include file="/WEB-INF/views/common/common.jsp" %>
@@ -13,7 +13,7 @@ request.setAttribute("namespace", "${modelNameVariable}");
     <shiro:hasPermission name="${modelNameVariable}_delete">
          <input type="hidden" id="deleteAuth" value="Y"/>
     </shiro:hasPermission>
-	<table class="easyui-datagrid" fit="true" style="height: 515px;" <shiro:hasPermission name="${modelNameVariable}_find"> url="<c:url value="/${modelNameVariable}/find"> </c:url>" </shiro:hasPermission> id="${namespace }Grid"  title="数据列表" 
+	<table class="easyui-datagrid" fit="true" style="height: 515px;" <shiro:hasPermission name="${modelNameVariable}_find"> url="<c:url value="/${modelNameVariable}/find"> </c:url>" </shiro:hasPermission> id="${r'${namespace }'}Grid"  title="数据列表" 
 	     data-options="<shiro:hasPermission name="${modelNameVariable}_update">onDblClickCell: function(index,field,value){update('${modelNameVariable}/toUpdate','修改',400,420);}</shiro:hasPermission>" 
 	     singleSelect="true" rownumbers="true" pagination="true" toolbar="#toolbar">
 		<thead>
@@ -39,7 +39,7 @@ request.setAttribute("namespace", "${modelNameVariable}");
 				<a href="javascript:void(0);" onclick="update('${modelNameVariable}/toUpdate','修改',400,420);" class="easyui-linkbutton" iconCls="icon-edit" plain="true" title="修改">修改</a>
 			</shiro:hasPermission>
 		</div>
-		<div id="${namespace }SearchDiv">
+		<div id="${r'${namespace }'}SearchDiv">
 		    <shiro:hasPermission name="${modelNameVariable}_find">
 		    <form id="searchForm">
 		         <table>
@@ -75,7 +75,7 @@ request.setAttribute("namespace", "${modelNameVariable}");
 	</div>
 	
 	<script type="text/javascript">
-	    setNamespace("${namespace }");
+	    setNamespace("${r'${namespace }'}");
 		function formatterAction(value, row, index) {
 			var deleteAuth = $("#deleteAuth").val();
 			if ("Y" == deleteAuth) {

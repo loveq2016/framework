@@ -46,10 +46,18 @@
 			</properties>
 		</profile>
 		<profile>
-			<!-- 生产环境 -->
-			<id>pro</id>
+			<!-- 预生产环境 -->
+			<id>pre</id>
 			<properties>
-				<profiles.active>pro</profiles.active>
+				<profiles.active>pre</profiles.active>
+				<deploy.url>http://host:port/manager/text</deploy.url>
+			</properties>
+		</profile>
+		<profile>
+			<!-- 生产环境 -->
+			<id>prod</id>
+			<properties>
+				<profiles.active>prod</profiles.active>
 				<deploy.url>http://host:port/manager/text</deploy.url>
 			</properties>
 		</profile>
@@ -75,9 +83,10 @@
 				<directory>src/main/resources</directory>
 				<!-- 资源根目录排除各环境的配置，使用单独的资源目录来指定 -->
 				<excludes>
+				    <exclude>dev/*</exclude>
 					<exclude>test/*</exclude>
-					<exclude>pro/*</exclude>
-					<exclude>dev/*</exclude>
+					<exclude>pre/*</exclude>
+					<exclude>prod/*</exclude>
 				</excludes>
 			</resource>
 			<resource>
