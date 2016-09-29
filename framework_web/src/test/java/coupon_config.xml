@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 
-	<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/coupon" userId="root"
-		password="123456">
+	<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.0.200:3306/hljrdevdb" userId="root"
+		password="root888">
 	</jdbcConnection>
     
-	<javaModel targetPackage="com.huanlvjinfu.coupon.dao.model" targetProject="E:\framework_web/src/main/java"/>
+	<javaModel targetPackage="com.huanlv.site.model.activity" targetProject="E:\framework_web/src/main/java"/>
 
-	<sqlMap targetPackage="com.huanlvjinfu.coupon.dao.mapper" targetProject="E:\framework_web/src/main/java"/>
+	<sqlMap targetPackage="com.huanlv.site.persist.activity" targetProject="E:\framework_web/src/main/java"/>
 
-	<javaClient targetPackage="com.huanlvjinfu.coupon.dao" targetProject="E:\framework_web/src/main/java"/>
+	<javaClient targetPackage="com.huanlv.site.persist.activity" targetProject="E:\framework_web/src/main/java"/>
 	
-    <service targetPackage="com.huanlvjinfu.coupon.service" targetProject="E:\framework_web/src/main/java"/>
+    <service targetPackage="com.huanlv.site.service.activity" targetProject="E:\framework_web/src/main/java"/>
     
-    <controller targetPackage="com.huanlvjinfu.coupon.controller" targetProject="E:\framework_web/src/main/java"/>
+    <controller targetPackage="com.huanlv.site.activity.action" targetProject="E:\framework_web/src/main/java"/>
 	
 	<view targetProject="E:\framework_web\src\main\webapp\WEB-INF\views" />
  
-	<table tableName="card_coupon" domainObjectName="CardCoupon"  />
+	<!-- <table tableName="activity_click_record" domainObjectName="ActivityClickRecord"  />
+	<table tableName="activity_record" domainObjectName="ActivityRecord"  /> -->
+	
+	
+	<table tableName="activity_click_history" domainObjectName="ActivityClickHistory"  />
 </config>
