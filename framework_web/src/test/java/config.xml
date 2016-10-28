@@ -4,21 +4,27 @@
 	<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.0.200:3306/hljrdevdb" userId="root"
 		password="root888">
 	</jdbcConnection>
-    
-	<javaModel targetPackage="com.huanlv.creditsupplier" targetProject="E:\framework_web/src/main/java"/>
+ 
+	<javaModel targetPackage="com.huanlv.datastatistics" targetProject="E:\framework_web/src/main/java"/>
 
-	<sqlMap targetPackage="com.huanlv.creditsupplier.mapper" targetProject="E:\framework_web/src/main/java"/>
+	<sqlMap targetPackage="com.huanlv.datastatistics.mapper" targetProject="E:\framework_web/src/main/java"/>
 
-	<javaClient targetPackage="com.huanlv.creditsupplier.mapper" targetProject="E:\framework_web/src/main/java"/>
+	<javaClient targetPackage="com.huanlv.datastatistics.mapper" targetProject="E:\framework_web/src/main/java"/>
 	
-    <service targetPackage="com.huanlv.creditsupplier" targetProject="E:\framework_web/src/main/java"/>
+    <service targetPackage="com.huanlv.datastatistics" targetProject="E:\framework_web/src/main/java"/>
     
-    <controller targetPackage="com.huanlv.creditsupplier" targetProject="E:\framework_web/src/main/java"/>
+    <controller targetPackage="com.huanlv.datastatistics" targetProject="E:\framework_web/src/main/java"/>
 	
 	<view targetProject="E:\framework_web\src\main\webapp\WEB-INF\views" />
 	
-	<!-- <table tableName="credit_supplier" domainObjectName="CreditSupplier"  /> 
-	<table tableName="credit_supplier_attachment" domainObjectName="CreditSupplierAttachment"  /> --> 
+	<!-- <table tableName="prod_order" domainObjectName="ProdOrder"  />  -->
 	
-	<table tableName="credit_allocation" domainObjectName="CreditAllocation"  />
+	<!-- <table tableName="product_click_history" domainObjectName="ProductClickHistory"  /> -->
+	
+	<!-- <table tableName="order_statistics" domainObjectName="OrderStatistics"  />  -->
+	<!--  <table tableName="user_credit_statistics" domainObjectName="UserCreditStatistics"  /> -->
+	 <!--  <table tableName="billing_statistics" domainObjectName="BillingStatistics"  /> -->
+	<!-- <table tableName="pay_org_bill" domainObjectName="Bill"  />
+	<table tableName="pay_org_bill_stages" domainObjectName="BillStages"  /> -->
+	<table tableName="promotion_channels" domainObjectName="PromotionChannels"  /> 
 </config>

@@ -158,14 +158,14 @@ function refreshData() {
 	var $grid = getGrid();
 	if ($grid.is(".easyui-treegrid")) {
     	var row = getSelected();
-    	if (row && row.parentId != "-1") {
+    	if (row && row.parentId != "0") {
     		$grid.treegrid('reload', row.parentId);
     		row.state = "open";
     	} else {
-    		$grid.treegrid({pageNumber:1}).treegrid('reload');
+    		$grid.treegrid({pageNumber:1});
     	}
     } else {
-    	$grid.datagrid({pageNumber:1}).datagrid('reload');
+    	$grid.datagrid({pageNumber:1});
     }
 }
 
@@ -199,7 +199,11 @@ function searchData() {
 					}
 				}
 			});
-			$grid.datagrid({queryParams:queryParams, pageNumber:1});
+			if ($grid.hasClass("easyui-treegrid")) {
+				$grid.treegrid({queryParams:queryParams, pageNumber:1});
+			} else {
+				$grid.datagrid({queryParams:queryParams, pageNumber:1});
+			}
 		}
 	}
 }

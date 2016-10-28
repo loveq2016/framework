@@ -15,28 +15,97 @@ $.extend($.fn.validatebox.defaults.rules, {
         },
         message:'非法字符,仅支持中英文、数字和下划线!'
     },
-    ltTo: {
+    numberLtTo: {
         validator:function(value,param){
             return $(param[0]).val() > value;
         },
         message:'数值过大!'
     },
-    gtTo: {
+    numberGtTo: {
         validator:function(value,param){
             return $(param[0]).val() < value;
         },
         message:'数值太小!'
     },
-    ltEqualTo: {
+    numberLtEqualTo: {
         validator:function(value,param){
             return $(param[0]).val() >= value;
         },
         message:'数值过大!'
     },
-    gtEqualTo: {
+    numberGtEqualTo: {
         validator:function(value,param){
             return $(param[0]).val() <= value;
         },
         message:'数值太小!'
+    },
+    dateLtTo: {
+        validator:function(value,param){
+        	var paramValue;
+        	if ($(param[0]).hasClass("easyui-datetimebox")) {
+        		paramValue = $(param[0]).datetimebox("getValue");
+        	} else {
+        		paramValue = $(param[0]).val();
+        	}
+        	var result = dateCompareTo(value, paramValue);
+        	if (result > 0) {
+        		return false;
+        	} else {
+        		return true;
+        	}
+        },
+        message:'日期过大!'
+    },
+    dateGtTo: {
+        validator:function(value,param){
+        	var paramValue;
+        	if ($(param[0]).hasClass("easyui-datetimebox")) {
+        		paramValue = $(param[0]).datetimebox("getValue");
+        	} else {
+        		paramValue = $(param[0]).val();
+        	}
+        	var result = dateCompareTo(value, paramValue);
+        	if (result < 0) {
+        		return false;
+        	} else {
+        		return true;
+        	}
+        },
+        message:'日期太小!'
+    },
+    dateLtEqualTo: {
+        validator:function(value,param){
+        	var paramValue;
+        	if ($(param[0]).hasClass("easyui-datetimebox")) {
+        		paramValue = $(param[0]).datetimebox("getValue");
+        	} else {
+        		paramValue = $(param[0]).val();
+        	}
+        	var result = dateCompareTo(value, paramValue);
+        	if (result >= 0) {
+        		return false;
+        	} else {
+        		return true;
+        	}
+        },
+        message:'日期过大!'
+    },
+    dateGtEqualTo: {
+        validator:function(value,param){
+        	var paramValue;
+        	if ($(param[0]).hasClass("easyui-datetimebox")) {
+        		paramValue = $(param[0]).datetimebox("getValue");
+        	} else {
+        		paramValue = $(param[0]).val();
+        	}
+        	var result = dateCompareTo(value, paramValue);
+        	if (result <= 0) {
+        		return false;
+        	} else {
+        		return true;
+        	}
+        },
+        message:'日期太小!'
     }
 });
+

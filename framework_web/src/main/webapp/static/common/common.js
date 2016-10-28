@@ -10,6 +10,12 @@ function removeLastChar(str) {
 	}
 }
 
+function dateCompareTo(startDate, endDate) {
+	var begin=new Date(startDate.replace(/-/g,"/"));
+    var end=new Date(endDate.replace(/-/g,"/"));
+    return begin-end;
+}
+
 function writeObj(obj){ 
     var description = ""; 
     for(var i in obj){   
