@@ -137,9 +137,6 @@ function opinionTime(stratTime, endTime) {
 		return true;
 }
 
-function dateFormatByEasyui(value, row, index) {
-	return dateFormat(value);
-}
 
 function dateFormat(date,format) {
 	if (isEmpty(format)) {

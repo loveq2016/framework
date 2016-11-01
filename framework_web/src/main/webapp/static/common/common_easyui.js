@@ -18,6 +18,17 @@ function confirm(msg, callName) {
 }
 
 /**
+ * 格式化日期
+ * @param value
+ * @param row
+ * @param index
+ * @returns
+ */
+function dateFormatByEasyui(value, row, index) {
+	return dateFormat(value);
+}
+
+/**
  * 格式化 日期类型的 函数
  * @param data
  * @returns
